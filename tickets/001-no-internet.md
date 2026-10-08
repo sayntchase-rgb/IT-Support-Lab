@@ -41,7 +41,7 @@ Record exactly what works and what fails.
 - [x] Valid IPv4 address is assigned
 - [x] Default gateway is present
 - [x] Gateway responds to ping
-- [ ] Public IP responds to ping
+- [x] Public IP responds to ping
 - [ ] Domain name resolves
 - [ ] Website loads
 
@@ -134,8 +134,16 @@ ping 8.8.8.8
 Result:
 
 ```text
-PENDING
+4 packets sent, 4 received, 0 lost (0% loss)
+Minimum: 10 ms
+Maximum: 14 ms
+Average: 11 ms
+TTL: 115
 ```
+
+Interpretation:
+
+The public IP address responded successfully with no packet loss. This confirms that the workstation can reach the public Internet by IP address, so local TCP/IP, Wi-Fi connectivity, the default gateway, and upstream IPv4 routing are all functioning. If the reported problem still exists, the next logical area to test is DNS/name resolution.
 
 ### 6. Test DNS Resolution
 
