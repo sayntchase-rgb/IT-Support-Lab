@@ -1,6 +1,6 @@
 # Ticket 001 — Local Gateway Reachable, Internet Unreachable
 
-**Status:** Ready to run  
+**Status:** In progress  
 **Category:** Networking / Connectivity  
 **Platform:** Windows  
 **Priority:** Normal  
@@ -17,24 +17,29 @@ Do not assume DNS is the cause. Test the network layer-by-layer.
 
 ## Environment
 
-Fill these in during the lab.
+Baseline captured with `ipconfig /all` before making configuration changes.
 
-- Hostname:
-- Windows version:
-- Network adapter:
-- IPv4 address:
-- Subnet mask/prefix:
-- Default gateway:
-- DNS server(s):
-- Connection type: Wi-Fi / Ethernet
+- Hostname: Redacted from public portfolio
+- Windows version: Not yet recorded
+- Active network adapter: Realtek Wi-Fi 6 adapter
+- IPv4 address: `192.168.1.241`
+- Subnet mask: `255.255.255.0` (`/24`)
+- Default gateway: `192.168.1.254`
+- DHCP: Enabled
+- DHCP server: `192.168.1.254`
+- DNS servers: `8.8.8.8`, `8.8.4.4` and an ISP-provided IPv6 resolver
+- Connection type: Wi-Fi
+- Additional adapter observed: VirtualBox host-only adapter at `192.168.56.1/24` with no default gateway
+
+> Public-facing documentation intentionally omits physical MAC addresses and global IPv6 addresses because they are unnecessary for demonstrating the troubleshooting process.
 
 ## Initial Symptoms
 
 Record exactly what works and what fails.
 
-- [ ] Network adapter is connected
-- [ ] Valid IPv4 address is assigned
-- [ ] Default gateway is present
+- [x] Network adapter is connected
+- [x] Valid IPv4 address is assigned
+- [x] Default gateway is present
 - [ ] Gateway responds to ping
 - [ ] Public IP responds to ping
 - [ ] Domain name resolves
@@ -48,15 +53,21 @@ Record exactly what works and what fails.
 ipconfig /all
 ```
 
-Record:
+Observed baseline:
 
 ```text
-IPv4:
-Subnet:
-Gateway:
-DNS:
-DHCP Enabled:
+Active interface: Wi-Fi
+IPv4: 192.168.1.241
+Subnet: 255.255.255.0 (/24)
+Gateway: 192.168.1.254
+DHCP Enabled: Yes
+DHCP Server: 192.168.1.254
+DNS: 8.8.8.8, 8.8.4.4, ISP IPv6 resolver
 ```
+
+Interpretation:
+
+The workstation has a valid private IPv4 address on the `192.168.1.0/24` network, DHCP is active, and a default gateway is configured. The active Internet-facing interface is Wi-Fi. A separate VirtualBox host-only interface exists but has no default gateway, so it is not being treated as the primary Internet path.
 
 ### 2. Test the Local TCP/IP Stack
 
@@ -72,10 +83,8 @@ PENDING
 
 ### 3. Test the Local Interface
 
-Replace `<LOCAL_IP>` with the workstation address.
-
 ```powershell
-ping <LOCAL_IP>
+ping 192.168.1.241
 ```
 
 Result:
@@ -86,10 +95,8 @@ PENDING
 
 ### 4. Test the Default Gateway
 
-Replace `<GATEWAY_IP>` with the actual gateway.
-
 ```powershell
-ping <GATEWAY_IP>
+ping 192.168.1.254
 ```
 
 Result:
@@ -188,7 +195,7 @@ PENDING
 Repeat the relevant tests after remediation.
 
 ```powershell
-ping <GATEWAY_IP>
+ping 192.168.1.254
 ping 8.8.8.8
 nslookup google.com
 ```
