@@ -42,7 +42,7 @@ Record exactly what works and what fails.
 - [x] Default gateway is present
 - [x] Gateway responds to ping
 - [x] Public IP responds to ping
-- [ ] Domain name resolves
+- [x] Domain name resolves
 - [ ] Website loads
 
 ## Investigation
@@ -154,8 +154,15 @@ nslookup google.com
 Result:
 
 ```text
-PENDING
+DNS query succeeded.
+google.com resolved to multiple IPv6 and IPv4 addresses.
+Example IPv4 results included 142.250.105.139, 142.250.105.113, 142.250.105.102,
+142.250.105.101, 142.250.105.100, and 142.250.105.138.
 ```
+
+Interpretation:
+
+DNS resolution is functioning correctly because the hostname `google.com` was successfully translated into multiple valid IP addresses. This rules out a basic DNS-resolution failure at this stage of the investigation.
 
 ### 7. Trace the Route
 
