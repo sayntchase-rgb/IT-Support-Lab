@@ -96,8 +96,14 @@ ping 192.168.1.241
 Result:
 
 ```text
-PENDING
+4 packets sent, 4 received, 0 lost (0% loss)
+Round-trip time: <1 ms
+TTL: 128
 ```
+
+Interpretation:
+
+The workstation successfully responded on its assigned Wi-Fi IPv4 address. This confirms that the local interface and IPv4 configuration are responding correctly. The next step is to test communication with the default gateway.
 
 ### 4. Test the Default Gateway
 
