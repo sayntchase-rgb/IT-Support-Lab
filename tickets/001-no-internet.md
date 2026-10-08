@@ -78,8 +78,14 @@ ping 127.0.0.1
 Result:
 
 ```text
-PENDING
+4 packets sent, 4 received, 0 lost (0% loss)
+Round-trip time: <1 ms
+TTL: 128
 ```
+
+Interpretation:
+
+The loopback test succeeded with no packet loss. This confirms that the local Windows TCP/IP stack is functioning correctly. The failure, if present, is farther outward than the local protocol stack.
 
 ### 3. Test the Local Interface
 
