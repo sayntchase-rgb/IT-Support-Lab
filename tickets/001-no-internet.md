@@ -40,7 +40,7 @@ Record exactly what works and what fails.
 - [x] Network adapter is connected
 - [x] Valid IPv4 address is assigned
 - [x] Default gateway is present
-- [ ] Gateway responds to ping
+- [x] Gateway responds to ping
 - [ ] Public IP responds to ping
 - [ ] Domain name resolves
 - [ ] Website loads
@@ -114,8 +114,16 @@ ping 192.168.1.254
 Result:
 
 ```text
-PENDING
+4 packets sent, 4 received, 0 lost (0% loss)
+Minimum: 1 ms
+Maximum: 5 ms
+Average: 2 ms
+TTL: 64
 ```
+
+Interpretation:
+
+The default gateway responded successfully with no packet loss. This confirms that the workstation can communicate across the local Wi-Fi network to the router. The local path from the PC to the gateway is functioning, so the next test moves beyond the LAN to a public Internet IP address.
 
 ### 5. Test Internet Reachability Without DNS
 
