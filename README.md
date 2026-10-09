@@ -49,11 +49,11 @@ IT-Support-Lab/
 
 | Ticket | Scenario | Status |
 |---|---|---|
-| 001 | Computer can reach local gateway but cannot reach the Internet | Ready to run |
+| 001 | Computer can reach local gateway but cannot reach the Internet | In progress — baseline checks documented |
 
 ## Ticket #001
 
-The first lab investigates a Windows computer that can communicate with its local gateway but cannot reach the public Internet.
+The first lab investigates a reported loss of Internet access on a Windows computer. Documented checks confirm a valid IPv4 configuration and successful loopback, local-interface, gateway, public-IP (`8.8.8.8`), and DNS tests. The reported connectivity failure was not reproduced by these checks; website access, route tracing, ARP observations, and final case conclusions remain pending.
 
 The investigation uses tools such as:
 
@@ -64,7 +64,7 @@ The investigation uses tools such as:
 - `arp -a`
 - PowerShell network commands
 
-See [`tickets/001-no-internet.md`](tickets/001-no-internet.md).
+See the [ticket and recorded results](tickets/001-no-internet.md), [diagnostic command guide](commands/windows-network-diagnostics.md), and [troubleshooting flowchart](troubleshooting-flowcharts/network-connectivity.md). The [screenshots area](screenshots/) and [lessons-learned file](lessons-learned.md) are prepared for evidence and conclusions still to be added.
 
 ## Portfolio Standard
 
